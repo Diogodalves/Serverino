@@ -53,7 +53,7 @@ def Arduino_handler():
     asyncio.set_event_loop(asyncio.new_event_loop())
     button = []
     try:
-        device = serial.Serial('COM6',9600,timeout=5)
+        device = serial.Serial('COM',BAUDRATE,timeout)
         dataButton = []
         cicle = 1
         start = numpy.array(cicle)
