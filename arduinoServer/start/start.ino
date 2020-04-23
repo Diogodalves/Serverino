@@ -19,7 +19,7 @@ void loop() {
     delay(50);
   }
   lastButtonState = buttonState;
-
+  
   if (buttonPushCounter % 2 == 0) {
     Serial.println(1);
   } else {
