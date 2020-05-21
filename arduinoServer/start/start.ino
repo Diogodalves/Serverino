@@ -1,6 +1,9 @@
 const int  buttonPin = 2; 
+const int A0 = A0;
+const int A1 = A1;
+const int A2 = A2;
   
-int buttonState = 0;         // current state of the button
+int buttonState = 0;         
 int lastButtonState = 0;  
 int buttonPushCounter = 0;
 
