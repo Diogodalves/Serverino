@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Serverino</title>
+	<meta name="description" content="Resultados do ECG">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="">
+	<script language="javascript" type="text/javascript" src="jquery.js"></script>
+    <script language="javascript" type="text/javascript" src="jquery.flot.js"></script> 
+    <script type="text/javascript">
+        var ws = new WebSocket("ws://localhost:9000/");
+
+        ws.onclose = function (e) {
+          console.log("Connection Closed") 
+        }
+
+        var data = [];
+        ws.onmessage = function (e) {
+        	data = JSON.parse(e.data);
+
+            if (data!=undefined){
+                console.log("on");
+
+            for (var i=0; i < data.A0.length; i++){
+            x = data.A0[i];
+            y = data.A1[i];
+            z = data.A2[i];
+            document.getElementById("xtest").innerHTML = "xValue: " + x ;
+            document.getElementById("ytest").innerHTML = "yValue: " + y ;
+            document.getElementById("ztest").innerHTML = "zValue: " + z ;
+            }
+
+            } else{
+                console.log("off")
+            }
+        }
+
+        window.onbeforeunload = function() {
+            ws.onclose = function () {};
+            ws.close()
+        };      
+    </script>
+</head>
+<body>
+    <h1>Serverino</h1>
+    <a id="xtest">xTest</a><br>
+    <a id="ytest">yTest</a><br>
+    <a id="ztest">zTest</a><br>
+</body>
+</html>
